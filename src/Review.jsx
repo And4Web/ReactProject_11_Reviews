@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import people from "./data";
-import { FaArrowRight, FaArrowLeft, FaQuoteRight } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaArrowLeft,
+  FaQuoteRight,
+  FaPrescriptionBottle,
+} from "react-icons/fa";
 
 function Review() {
   const [index, setIndex] = useState(0);
   const { id, name, job, image, text } = people[index];
 
+  const checkIndex = (number) => {
+    if (number < 0) {
+      return people.length - 1;
+    } else if (number > people.length - 1) {
+      return 0;
+    }
+    return number;
+  };
   const prevPerson = () => {
     if (index !== 0) {
       const prev = index - 1;
@@ -21,6 +34,14 @@ function Review() {
     } else {
       setIndex(0);
     }
+  };
+  const randomPerson = () => {
+    let randomNumber = Math.floor(Math.random() * people.length);
+    if (randomNumber === index) {
+      randomNumber = index + 1;
+    }
+    setIndex(checkIndex(randomNumber));
+    console.log(randomNumber);
   };
 
   return (
@@ -40,13 +61,7 @@ function Review() {
           <FaArrowRight />
         </button>
       </div>
-      <button
-        onClick={() => {
-          console.log("surprised");
-        }}
-      >
-        Surprise me
-      </button>
+      <button onClick={randomPerson}>Surprise me</button>
     </div>
   );
 }
