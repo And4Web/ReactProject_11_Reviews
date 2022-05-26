@@ -20,20 +20,24 @@ function Review() {
     return number;
   };
   const prevPerson = () => {
-    if (index !== 0) {
-      const prev = index - 1;
-      setIndex(prev);
-    } else {
-      setIndex(people.length - 1);
-    }
+    const prev = index - 1;
+    setIndex(checkIndex(prev));
+    // if (index !== 0) {
+    //   const prev = index - 1;
+    //   setIndex(prev);
+    // } else {
+    //   setIndex(people.length - 1);
+    // }
   };
   const nextPerson = () => {
-    if (index !== people.length - 1) {
-      const next = index + 1;
-      setIndex(next);
-    } else {
-      setIndex(0);
-    }
+    const next = index + 1;
+    setIndex(checkIndex(next));
+    // if (index !== people.length - 1) {
+    //   const next = index + 1;
+    //   setIndex(next);
+    // } else {
+    //   setIndex(0);
+    // }
   };
   const randomPerson = () => {
     let randomNumber = Math.floor(Math.random() * people.length);
